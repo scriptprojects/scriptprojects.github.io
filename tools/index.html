@@ -11,7 +11,7 @@
         $('#component_to_code').val(encodeURIComponent($('#component_to_code').val()))
       }
       function decode() {
-        $('#component_to_code').val(decodeURIComponent($('#component_to_code').val().replace('+', ' ')))
+        $('#component_to_code').val(decodeURIComponent($('#component_to_code').val().replace(/\+/g, ' ')))
       }
       $(document).ready(function(){
         $('#string_to_count').on('input', function(){
