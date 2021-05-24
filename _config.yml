@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 title: ScriptProjects.com
 description: Web, apps and more!
+include: [".well-known"]
