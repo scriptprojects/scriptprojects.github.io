@@ -1,0 +1,15 @@
+{
+  "appclips": {
+    "apps": ["GM9AKVU228.com.scriptprojects.smartBusinessCard.clip"]
+  },
+  "applinks": {
+    "details": [
+      {
+        "appID": "GM9AKVU228.com.scriptprojects.smartBusinessCard",
+        "paths": [
+          "/smartbusinesscard/user/*"
+        ]
+      }
+    ]
+  }
+}
