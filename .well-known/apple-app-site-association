@@ -1,3 +1,7 @@
+---
+layout: none
+permalink: .well-known/apple-app-site-association
+---
 {
   "appclips": {
     "apps": ["GM9AKVU228.com.scriptprojects.smartBusinessCard.clip"]
