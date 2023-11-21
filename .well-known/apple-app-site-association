@@ -13,6 +13,12 @@ permalink: .well-known/apple-app-site-association
         "paths": [
           "/smartbusinesscard/user/*"
         ]
+      },
+      {
+        "appID": "GM9AKVU228.com.scriptprojects.AutoGarageUI",
+        "paths": [
+          "/apps/biounlock/*"
+        ]
       }
     ]
   }
