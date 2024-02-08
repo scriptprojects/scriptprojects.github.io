@@ -19,6 +19,12 @@ permalink: .well-known/apple-app-site-association
         "paths": [
           "/apps/biounlock/*"
         ]
+      },
+      {
+        "appID": "GM9AKVU228.com.scriptprojects.Bingo",
+        "paths": [
+          "/apps/bingo/*"
+        ]
       }
     ]
   }
