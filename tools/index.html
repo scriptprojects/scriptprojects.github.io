@@ -24,10 +24,10 @@
         $('#component_to_code').val(decodeURIComponent($('#component_to_code').val().replace(/\+/g, ' ')))
       }
       function base64encode() {
-        $('#component_to_code').val(atob($('#component_to_code').val()))
+        $('#component_to_code').val(btoa($('#component_to_code').val()))
       }
       function base64decode() {
-        $('#component_to_code').val(btoa($('#component_to_code').val()))
+        $('#component_to_code').val(atob($('#component_to_code').val()))
       }
       $(document).ready(function(){
         $('#string_to_count').on('input', function(){
