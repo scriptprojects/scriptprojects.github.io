@@ -8,7 +8,8 @@ fluid: true
 <div id="parent">
     <div id="info" class="child"></div>
     <div id="controls" class="child">
-        <button id="markerButton" class="button" onclick="didClickMarkerButton(event)">Markers</button>
+        <div>Click action:</div>
+        <button id="markerButton" class="btn btn-outline-primary" onclick="didClickMarkerButton(event)">Markers</button>
     </div>
     <div id="map" class="child"></div>
 </div>
