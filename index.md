@@ -7,7 +7,7 @@ nav: "home"
 <div class="row" style="align-content: center; height: 100vh;">
   <div class="col-md-4">
     <div class="card mb-4">
-      <img src="images/code-unsplash.jpg" class="card-img-top" style="aspect-ratio: 16 / 9">
+      <img src="images/code-unsplash.jpg" class="card-img-top" style="aspect-ratio: 16 / 9; object-fit: cover;">
       <div class="card-body">
         <h5 class="card-title">Web Dev Tools</h5>
         <p class="card-text">Tools to URL encode & decode, Base64 encode & decode, hash a string (MD5, SHA-1, SHA-256, SHA-384, SHA-512).</p>
@@ -17,7 +17,7 @@ nav: "home"
   </div>
   <div class="col-md-4">
     <div class="card mb-4">
-      <img src="images/map-image-2.png" class="card-img-top" style="aspect-ratio: 16 / 9">
+      <img src="images/map-image-2.png" class="card-img-top" style="aspect-ratio: 16 / 9; object-fit: cover;">
       <div class="card-body">
         <h5 class="card-title">Mapping Tools</h5>
         <p class="card-text">Get the lat/lng of a point, view WKT/GeoJSON features &amp; more.<br>&nbsp;</p>
