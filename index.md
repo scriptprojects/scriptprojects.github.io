@@ -20,7 +20,7 @@ nav: "home"
       <img src="images/map-image-2.png" class="card-img-top" style="aspect-ratio: 16 / 9; object-fit: cover;">
       <div class="card-body">
         <h5 class="card-title">Mapping Tools</h5>
-        <p class="card-text">Get the lat/lng of a point (view WKT/GeoJSON features &amp; more coming soon).<br>&nbsp;</p>
+        <p class="card-text">Get the lat/lng of a point, view WKT/GeoJSON features. More coming soon.<br>&nbsp;</p>
         <a href="/tools/maptools.html" class="btn btn-primary stretched-link">Web Dev Tools</a>
       </div>
     </div> 

@@ -8,8 +8,17 @@ fluid: true
 <div id="parent">
     <div id="info" class="child"></div>
     <div id="controls" class="child">
-        <div>Click action:</div>
-        <button id="markerButton" class="btn btn-outline-primary" onclick="didClickMarkerButton(event)">Markers</button>
+        <div>Mode:</div>
+        <button id="markerButton" class="btn btn-outline-primary" onclick="didClickMarkerButton(event)">Marker</button>
+        <button id="wktButton" class="btn btn-outline-primary" onclick="didClickWKTButton(event)">WKT</button>
+        <div class="form-group d-none" id="wktWrapper">
+          <label for="wktInput">Type in your WKT:</label>
+          <textarea rows="10" id="wktInput" class="form-control"></textarea>
+          <div class="mt-3">
+            <button class="btn btn-primary" onclick="didClickUpdateWKTButton()">Update</button>
+            <button class="btn btn-danger" onclick="didClickClearWKTButton()">Clear</button>
+          </div>
+        </div>
     </div>
     <div id="map" class="child"></div>
 </div>
@@ -17,4 +26,5 @@ fluid: true
 <script src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'></script>
 <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
 <link rel='stylesheet' href='../css/maptools.css' />
+<script src="../js/wellknown.js"></script>
 <script src="../js/maptools.js"></script>
