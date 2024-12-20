@@ -1,5 +1,6 @@
 ---
-title: "Dev Maptools"
+title: "Dev Maptools - WKT Viewer, latitude/longitude finder & more"
+description: "WKT Viewer, latitude and longitude finder & plus more mapping tools"
 layout: page
 nav: "maptools"
 fluid: true
