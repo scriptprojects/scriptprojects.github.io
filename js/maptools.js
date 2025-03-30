@@ -9,6 +9,7 @@ const mlgl = maplibregl;
 const mapSettings = {
   markerMode: false,
   wktMode: false,
+  geojsonMode: false,
 };
 const map = new mlgl.Map({
   container: "map",
@@ -60,8 +61,9 @@ const updateCenter = () => {
 
 const didClickMarkerButton = (e) => {
   mapSettings.markerMode ^= true;
-  const el = (e && e.target) || document.getElementById("markerButton");
+  const el = (e && e.target) || document.getElementById("btnMarker");
   if (mapSettings.markerMode) {
+    clearToggle("marker");
     el.classList.add("active");
   } else {
     el.classList.remove("active");
@@ -71,14 +73,15 @@ const didClickMarkerButton = (e) => {
 const didClickWKTButton = (e) => {
   mapSettings.wktMode ^= true;
   const el = get("wktWrapper");
-  const button = get("wktButton");
+  const button = get("btnWKT");
   if (mapSettings.wktMode) {
+    clearToggle("wkt");
     //Show WKT input box
     el.classList.remove("d-none");
     button.classList.add("active");
     const wkt = localStorage.getItem("lastWktString");
     if (wkt && wkt.length != null && wkt.length > 0) {
-      get("wktInput").value = wkt;
+      get("strInput").value = wkt;
     }
   } else {
     //Hide WKT input box
@@ -88,32 +91,93 @@ const didClickWKTButton = (e) => {
 };
 
 const didClickUpdateWKTButton = () => {
-  const wkt = get("wktInput").value;
-  const obj = wellknown.parse(wkt);
-  if (map.isSourceLoaded("wktPoly")) {
+  const inputString = get("strInput").value;
+  if (mapSettings.wktMode) {
+    const obj = wellknown.parse(inputString);
+    clearMap();
+    map.addSource("wktPoly", {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        geometry: obj,
+      },
+    });
+    map.addLayer({
+      id: "wktPolyLayer",
+      type: "fill",
+      source: "wktPoly",
+      layout: {},
+      paint: {
+        "fill-color": "#088",
+        "fill-opacity": 0.65,
+      },
+    });
+    const bounds = getBounds(obj);
+    map.fitBounds(bounds, { padding: 10 });
+    localStorage.setItem("lastWktString", inputString);
+  } else if (mapSettings.geojsonMode) {
+    const obj = JSON.parse(inputString);
+
+    clearMap();
+    map.addSource("srcGeoJSON", {
+      type: "geojson",
+      data: obj,
+    });
+    map.addLayer({
+      id: "srcGeoJSONLayer",
+      type: "fill",
+      source: "srcGeoJSON",
+      layout: {},
+      paint: {
+        "fill-color": "#088",
+        "fill-opacity": 0.65,
+      },
+    });
+    const bounds = getBounds(obj.geometry);
+    map.fitBounds(bounds, { padding: 10 });
+    localStorage.setItem("lastGeoJSONString", inputString);
+  }
+};
+
+const didClickGeoJSONButton = () => {
+  mapSettings.geojsonMode ^= true;
+  const el = get("wktWrapper");
+  const button = get("btnGeoJSON");
+  if (mapSettings.geojsonMode) {
+    clearToggle("geojson");
+    el.classList.remove("d-none");
+    button.classList.add("active");
+    const geojson = localStorage.getItem("lastGeoJSONString");
+    if (geojson && geojson.length != null && geojson.length > 0) {
+      get("strInput").value = geojson;
+    }
+  } else {
+    el.classList.add("d-none");
+    button.classList.remove("active");
+  }
+};
+
+const clearMap = () => {
+  if (map.getLayer("srcGeoJSONLayer")) {
+    map.removeLayer("srcGeoJSONLayer");
+    map.removeSource("srcGeoJSON");
+  }
+  if (map.getLayer("wktPolyLayer")) {
     map.removeLayer("wktPolyLayer");
     map.removeSource("wktPoly");
   }
-  map.addSource("wktPoly", {
-    type: "geojson",
-    data: {
-      type: "Feature",
-      geometry: obj,
-    },
-  });
-  map.addLayer({
-    id: "wktPolyLayer",
-    type: "fill",
-    source: "wktPoly",
-    layout: {},
-    paint: {
-      "fill-color": "#088",
-      "fill-opacity": 0.65,
-    },
-  });
-  const bounds = getBounds(obj);
-  map.fitBounds(bounds, { padding: 10 });
-  localStorage.setItem("lastWktString", wkt);
+};
+
+const clearToggle = (src) => {
+  if (mapSettings.geojsonMode && src != "geojson") {
+    didClickGeoJSONButton();
+  }
+  if (mapSettings.markerMode && src != "marker") {
+    didClickMarkerButton();
+  }
+  if (mapSettings.wktMode && src != "wkt") {
+    didClickWKTButton();
+  }
 };
 
 const getBounds = (geometry) => {
@@ -126,24 +190,49 @@ const getBounds = (geometry) => {
     Number.MIN_SAFE_INTEGER,
     Number.MIN_SAFE_INTEGER,
   ];
-  geometry.coordinates.forEach((ring) => {
-    ring.forEach((point) => {
-      const lat = point[1];
-      const lng = point[0];
-      if (lat < minLat) {
-        minLat = lat;
-      }
-      if (lat > maxLat) {
-        maxLat = lat;
-      }
-      if (lng < minLng) {
-        minLng = lng;
-      }
-      if (lng > maxLng) {
-        maxLng = lng;
-      }
+  if (geometry.type.toLowerCase() == "polygon") {
+    geometry.coordinates.forEach((ring) => {
+      ring.forEach((point) => {
+        const lat = point[1];
+        const lng = point[0];
+        if (lat < minLat) {
+          minLat = lat;
+        }
+        if (lat > maxLat) {
+          maxLat = lat;
+        }
+        if (lng < minLng) {
+          minLng = lng;
+        }
+        if (lng > maxLng) {
+          maxLng = lng;
+        }
+      });
     });
-  });
+  } else if (geometry.type.toLowerCase() == "multipolygon") {
+    geometry.coordinates.forEach((polygon) => {
+      polygon.forEach((ring) => {
+        ring.forEach((point) => {
+          const lat = point[1];
+          const lng = point[0];
+          if (lat < minLat) {
+            minLat = lat;
+          }
+          if (lat > maxLat) {
+            maxLat = lat;
+          }
+          if (lng < minLng) {
+            minLng = lng;
+          }
+          if (lng > maxLng) {
+            maxLng = lng;
+          }
+        });
+      });
+    });
+  } else {
+    return [];
+  }
   return [
     [minLng, minLat],
     [maxLng, maxLat],
@@ -152,6 +241,6 @@ const getBounds = (geometry) => {
 
 const didClickClearWKTButton = () => {
   localStorage.setItem("lastWktString", "");
-  get("wktInput").value = "";
+  get("strInput").value = "";
   map.removeLayer("wktPolyLayer");
 };

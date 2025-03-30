@@ -10,11 +10,12 @@ fluid: true
     <div id="info" class="child"></div>
     <div id="controls" class="child">
         <div>Mode:</div>
-        <button id="markerButton" class="btn btn-outline-primary" onclick="didClickMarkerButton(event)">Marker</button>
-        <button id="wktButton" class="btn btn-outline-primary" onclick="didClickWKTButton(event)">WKT</button>
+        <button id="btnMarker" class="btn btn-outline-primary" onclick="didClickMarkerButton(event)">Marker</button>
+        <button id="btnWKT" class="btn btn-outline-primary" onclick="didClickWKTButton(event)">WKT</button>
+        <button id="btnGeoJSON" class="btn btn-outline-primary" onclick="didClickGeoJSONButton(event)">GeoJSON</button>
         <div class="form-group d-none" id="wktWrapper">
-          <label for="wktInput">Type in your WKT:</label>
-          <textarea rows="10" id="wktInput" class="form-control"></textarea>
+          <label for="strInput">Type in your WKT/GeoJSON:</label>
+          <textarea rows="10" id="strInput" class="form-control"></textarea>
           <div class="mt-3">
             <button class="btn btn-primary" onclick="didClickUpdateWKTButton()">Update</button>
             <button class="btn btn-danger" onclick="didClickClearWKTButton()">Clear</button>
