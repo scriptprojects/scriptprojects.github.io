@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Links</title>
+    <style>
+        /* 1. CSS Variables for easy customization */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+            --card-bg: #ffffff;
+            --accent-color: #007bff;
+            --border-color: #e9ecef;
+            --max-width: 480px;
+            --transition: all 0.2s ease-in-out;
+        }
+
+        /* 2. Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+        }
+
+        /* 3. Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        p.bio {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* 4. Section & Link Styles */
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-item {
+            margin-bottom: 12px;
+        }
+
+        .link-card {
+            display: block;
+            background: var(--card-bg);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .link-card.featured {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            font-weight: 600;
+            animation: subtlePulse 2s infinite;
+        }
+
+        @keyframes subtlePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* 5. Hover Effects */
+        .link-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 6. Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Dark Mode Support (Optional) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-main: #e9ecef;
+                --text-muted: #adb5bd;
+                --card-bg: #1e1e1e;
+                --border-color: #333;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <!-- Replace with your own image URL -->
+            <img src="img/profile_pic.png" alt="Profile Picture" class="profile-pic">
+            <h1>Coding Bootcamp 2026</h1>
+            <p class="bio">presentado por <strong>El Salvador Foundation</strong></p>
+        </header>
+
+        <main>
+            <!-- Section 1: Class related -->
+            <section>
+                <h2>Clases</h2>
+                <div class="link-list">
+                    <div class="link-item">
+                        <a href="https://meet.jit.si/moderated/bd0254ce21d238c00d51641154f8bcfbb1f065c3e6d2e60950c4a8fcbeb9d75d" class="link-card featured">Clase en Vivo</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://www.youtube.com/playlist?list=PLJp8LnZFYEm1SnU0D1QpsfkFS-WwyQd30" class="link-card">Clases Grabadas</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://www.codingtemple.com/free-courses/software-engineering/" class="link-card">Curriculo</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://github.com/scriptprojectsdev/bootcamp-2026" class="link-card">Ejercicios</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://mm.scriptprojects.org/signup_user_complete/?id=mn1c88nxu3f37pa6z7hhmdtico" class="link-card">Mattermost (Chat)</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Recommended tools -->
+            <section>
+                <h2>Herramientas</h2>
+                <div class="link-list">
+                    <div class="link-item">
+                        <a href="https://code.visualstudio.com/" class="link-card">VS Code</a>
+                    </div>
+                </div>
+                <div class="link-list">
+                    <div class="link-item">
+                        <a href="https://nodejs.org/" class="link-card">Node.js</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Reference links -->
+            <section>
+                <h2>Referencias</h2>
+                <div class="link-list">
+                    <div class="link-item">
+                        <a href="https://github.com/scriptprojectsdev/bootcamp-2026/blob/main/README.md" class="link-card">Como entregar ejercicios</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://www.w3schools.com" class="link-card">W3Schools</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://developer.mozilla.com/" class="link-card">MDN (Mozilla Developer Network)</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2023 Alex Doe
+        </footer>
+    </div>
+
+</body>
+
+</html>
